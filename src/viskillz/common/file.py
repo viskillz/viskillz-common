@@ -16,5 +16,8 @@ def list_files(path: str, extension: str = None, include_path: bool = False) -> 
 
 def init_dir(path, delete=True):
     if delete:
-        shutil.rmtree(path)
+        try:
+            shutil.rmtree(path)
+        except FileNotFoundError:
+            pass
     os.makedirs(path, exist_ok=True)
