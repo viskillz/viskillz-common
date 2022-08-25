@@ -1,4 +1,5 @@
 import os
+import shutil
 
 
 def list_files(path: str, extension: str = None, include_path: bool = False) -> list[str]:
@@ -14,7 +15,6 @@ def list_files(path: str, extension: str = None, include_path: bool = False) -> 
 
 
 def init_dir(path, delete=True):
-    os.makedirs(path, exist_ok=True)
     if delete:
-        for file in [f for f in os.listdir(path)]:
-            os.remove(os.path.join(path, file))
+        shutil.rmtree(path)
+    os.makedirs(path, exist_ok=True)
